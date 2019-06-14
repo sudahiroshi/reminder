@@ -22,27 +22,27 @@ example.push({
         {
             work: "ペン入れ（人物）",
             deadline: "2019/7/7",
-            pages: 5
+            pages: 0
         },
         {
             work: "ペン入れ（背景）",
             deadline: "2019/7/10",
-            pages: 5
+            pages: 0
         },
         {
             work: "トーン",
             deadline: "2019/7/12",
-            pages: 5
+            pages: 0
         },
         {
             work: "台詞入れ",
             deadline: "2019/7/13",
-            pages: 5
+            pages: 0
         },
         {
             work: "仕上げ",
             deadline: "2019/7/16",
-            pages: 5
+            pages: 0
         }
     ]
 });
