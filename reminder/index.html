@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reminder</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="reminder.js"></script>
+    <link rel="stylesheet" href="reminder.css">
+</head>
+<body>
+<div class="task">
+    <div class="title">だって！夏だし(50p）</div>
+    <div class="remind">プロット（台詞確定）の期限が過ぎています</div>
+    <div class="progress">
+        <div class="subject">
+            <p class="work">プロット（台詞確定）</p>
+            <p class="deadline">[〜06/06（日）]</p>
+            <p class="days, over">5日超過</p>
+        </div>
+        <div class="prg">
+            <p class="pages">5/50p</p>
+            <svg class="graph" width="240" height="20" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <rect x="0" y="0" width="24" height="20" fill="#0060c0" />
+                <rect x="24" y="0" width="216" height="20" fill="#d0e0f0" />
+            </svg>
+        </div>
+        <div class="subject">
+            <div class="works">
+                    <span class="work">ネーム</span>
+                    <span class="deadline">[〜06/13（木）]</span>
+            </div>
+            <p class="days, over">1日超過</p>
+        </div>
+        <div class="prg">
+            <p class="pages">5/50p</p>
+            <svg class="graph" width="240" height="20" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <rect x="0" y="0" width="24" height="20" fill="#0060c0" />
+                <rect x="24" y="0" width="216" height="20" fill="#d0e0f0" />
+            </svg>
+        </div>
+    </div>
+</div>
+</body>
+</html>

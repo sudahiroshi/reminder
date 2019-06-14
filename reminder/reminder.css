@@ -1,0 +1,63 @@
+* {
+    border: none;
+    margin: 0px;
+}
+
+.task {
+    margin: 4px;
+    border: 2px;
+    border-color: #000000;
+}
+
+.title {
+    font-size: large;
+    color: #ffffff;
+    background-color: #004080;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.remind {
+    color: #c00000;
+    background-color: #fefee8;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.progress {
+    font-size: small;
+}
+.subject {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: #e0e0e0;
+    padding: 4px;
+}
+
+.work {
+    font-size: normal;
+    font-weight: bold;
+}
+
+.over {
+    color: #c02020;
+    font-weight: bold;
+}
+
+.prg {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 4px;
+}
+
+.pages {
+    padding: 6px;
+    width: 3em;
+    text-align: right;
+}
+
+.graph {
+    padding: 6px;
+}
+
