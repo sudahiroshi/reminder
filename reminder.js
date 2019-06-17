@@ -65,6 +65,9 @@ class Reminder {
             let title = document.createElement('div');
             title.classList.add('title');
             title.textContent = dat.title;
+            let remind = document.createElement('div');
+            remind.classList.add('remind');
+            let remindList = [];
             let progress = document.createElement('div');
             let page_all = dat.pages;
             for( let da of dat.progress ) {
@@ -83,8 +86,9 @@ class Reminder {
                 days.classList.add('days');
                 let remain = Math.trunc((dead - new Date())/1000/60/60/24);
                 if( remain < 0 ){
-                    days.textContent = "" + remain + "日超過";
+                    days.textContent = "" + ( -1 * remain ) + "日超過";
                     days.classList.add('over');
+                    remindList.push( da.work );
                 }
                 else days.textContent = "あと" + remain + "日";
 
@@ -101,12 +105,38 @@ class Reminder {
                 pages.classList.add('pages');
                 pages.textContent = "" + da.pages + "/" + page_all + "p";
 
+                let graph = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                graph.classList.add('graph');
+                graph.setAttribute( 'width', 240 );
+                graph.setAttribute( 'height', 20 );
+                graph.setAttribute( 'version', 1.1 );
+                let bar1 = document.createElementNS('http://www.w3.org/2000/svg','rect');
+                bar1.setAttribute( 'x', 0 );
+                bar1.setAttribute( 'y', 0 );
+                bar1.setAttribute( 'width', da.pages / dat.pages * 240 );
+                bar1.setAttribute( 'height', 20 );
+                bar1.setAttribute( 'fill', '#0060c0' );
+                let bar2 = document.createElementNS('http://www.w3.org/2000/svg','rect');
+                bar2.setAttribute( 'x', da.pages / dat.pages * 240 );
+                bar2.setAttribute( 'y', 0 );
+                bar2.setAttribute( 'width', 240 - da.pages / dat.pages * 240 );
+                bar2.setAttribute( 'height', 20 );
+                bar2.setAttribute( 'fill', '#d0e0f0' );
+                graph.appendChild( bar1 );
+                graph.appendChild( bar2 );
+
                 prg.appendChild( pages );
+                prg.appendChild( graph );
                 progress.appendChild(prg);
 
             }
             console.log(title);
+
             task.appendChild(title);
+            if( remindList.length != 0 ) {
+                remind.textContent = remindList.join() + "の期限が過ぎています";
+                task.appendChild( remind );
+            }
             task.appendChild(progress);
             body.appendChild( task );
         }
