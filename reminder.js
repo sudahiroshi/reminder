@@ -85,7 +85,9 @@ class Reminder {
                 let days = document.createElement('p');
                 days.classList.add('days');
                 let remain = Math.trunc((dead - new Date())/1000/60/60/24);
-                if( remain < 0 ){
+                if( da.pages == page_all ) {
+                    days.textContent = "完成";
+                } else if( remain < 0 ){
                     days.textContent = "" + ( -1 * remain ) + "日超過";
                     days.classList.add('over');
                     remindList.push( da.work );
