@@ -64,3 +64,47 @@
 .invisible {
     display: none;
 }
+
+table {
+    width: 100%;
+}
+
+table tr:nth-child(odd) {
+    background-color: #d0d0d0;
+}
+table tr:nth-child(even) {
+    border-bottom: solid 2px #c0c000;
+}
+.input_form {
+    font-size: normal;
+
+    margin: 4px;
+}
+.input_progress {
+    margin: 4px;
+}
+.input_prg {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.updown {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.input_work {
+    width: 20em;
+    height: 1em;
+    background-color: #d0d0d0;
+}
+
+.input_date {
+    height: 1em;
+}
+
+input {
+    font-size: large;
+}
+
+.button {
+    width: 1em;
+}

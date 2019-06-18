@@ -7,7 +7,7 @@ example.push({
         {
             work: "プロット（台詞確定）",
             deadline: "2019/6/6",
-            pages: 5
+            pages: 50
         },
         {
             work: "ネーム",
@@ -138,7 +138,82 @@ class Reminder {
                 task.appendChild( remind );
             }
             task.appendChild(progress);
+
+            let to_setup = document.createElement('button');
+            to_setup.textContent = "入力画面";
+            to_setup.addEventListener('click', () => {
+                this.setup();
+            })
+            task.appendChild( to_setup );
             body.appendChild( task );
+        }
+    }
+
+    setup() {
+        let body = document.querySelector('body');
+        body.textContent = null;
+
+        for( let dat of this.data ) {
+            let setup = document.createElement('div');
+            setup.classList.add('setup');
+            let title = document.createElement('div');
+            title.classList.add('title');
+            title.textContent = dat.title;
+            let input_progress = document.createElement('div');
+            input_progress.classList.add('input_progress');
+            let page_all = dat.pages;
+            for( let da of dat.progress ) {
+                let input_subject = document.createElement('input');
+                input_subject.classList.add('input_subject');
+                input_subject.setAttribute('value', da.work);
+                let input_prg = document.createElement('div');
+                input_prg.classList.add('input_prg');
+                let input_date = document.createElement('input');
+                input_date.classList.add('input_date');
+                let deadline = new Date( da.deadline );
+                input_date.setAttribute('value', deadline.getFullYear() + '-' + deadline.getMonth() + '-' + deadline.getDay() );
+                let updown = document.createElement('div');
+                updown.classList.add('updown');
+                let up = document.createElement('button');
+                up.textContent = '▲';
+                up.classList.add('up');
+                let p = document.createElement('span');
+                p.textContent = da.pages;
+                let down = document.createElement('button');
+                down.textContent = '▼';
+                down.classList.add('down');
+
+                updown.appendChild(up);
+                updown.appendChild(p);
+                updown.appendChild(down);
+                input_prg.appendChild(input_date);
+                input_prg.appendChild(updown);
+                input_progress.appendChild(input_subject);
+                input_progress.appendChild(input_prg)
+
+            }
+            console.log(title);
+            setup.appendChild(title)
+            setup.appendChild(input_progress);
+
+            let to_main = document.createElement('button');
+            to_main.textContent = "保存しないで終了";
+            to_main.addEventListener('click', () => {
+                this.rendering();
+            })
+            setup.appendChild(to_main);
+            body.appendChild( setup );
+        }
+
+        let ups = document.querySelectorAll('.up');
+        for( let up of ups ) {
+            up.addEventListener('click', (ev) => {
+                console.log(ev.srcElement);
+                let parent = ev.srcElement.parentNode;
+                let num = Number(parent.childNodes[1].textContent);
+                console.log(num);
+                parent.childNodes[1].textContent = num + 1;
+            })
         }
     }
 }
@@ -146,4 +221,5 @@ class Reminder {
 window.addEventListener('load', () => {
     let dummy = new Reminder();
     dummy.rendering();
+    //dummy.setup();
 })

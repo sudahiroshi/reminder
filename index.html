@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="reminder.css">
 </head>
 <body>
-<div class="task">
+<div class="task" id="task">
     <div class="title">だって！夏だし(50p）</div>
     <div class="remind">プロット（台詞確定）の期限が過ぎています</div>
     <div class="progress">
@@ -42,5 +42,45 @@
         </div>
     </div>
 </div>
+<div class="setup" id="setup">
+    <div class="title">だって！夏だし(50p）</div>
+    <div class="input_progress">
+        <p class="input_subject">プロット（台詞確定）</p>
+        <div class="input_prg">
+            <input type="date" class="input_date" value="2019-06-06">
+            <div class="updown"><button class="up">▲</button><span>5</span><button class="down">▼</button></div>
+        </div>
+    </div>
+    <div class="input_progress">
+            <p class="input_subject">プロット（台詞確定）</p>
+            <div class="input_prg">
+                <input type="date" class="input_date" value="2019-06-06">
+                <div class="updown"><button>▲</button><span>5</span><button class="down">▼</button></div>
+            </div>
+        </div>
+    <table border class="input_form">
+        <tr>
+            <td colspan="4"><input type="text" class="input_work" size=20 value="プロット（台詞確定）"></td>
+        </tr>
+        <tr>
+            <td><input type="date" class="input_date" value="2019-06-06"></td>
+            <td width="1em"><button class="button">▼</button></td>
+            <td width="2em"><input type="text" value="5" width="2em"></td>
+            <td width="1em"><button class="button">▲</button></td>
+        </tr>
+        <tr>
+                <td colspan="4"><input type="text" class="input_work" size=20 value="プロット（台詞確定）"></td>
+            </tr>
+            <tr>
+                <td><input type="date" class="input_date" value="2019-06-06"></td>
+                <td><input type="button" value="▼"></td>
+                <td><input type="text" value="5"></td>
+                <td><input type="button" value="▲"></td>
+            </tr>
+    </table>
+</div>
+<div class="progress" id="progress">
+</div>
+
 </body>
 </html>
