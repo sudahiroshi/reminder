@@ -81,7 +81,7 @@ class Reminder {
                 let deadline = document.createElement('span');
                 deadline.classList.add('deadline');
                 let dead = new Date( da.deadline );
-                deadline.textContent = "[" + dead.getMonth() + "/" + dead.getDate() + "]";
+                deadline.textContent = "[" + (dead.getMonth()+1) + "/" + dead.getDate() + "]";
                 let days = document.createElement('p');
                 days.classList.add('days');
                 let remain = Math.trunc((dead - new Date())/1000/60/60/24);
@@ -172,8 +172,9 @@ class Reminder {
                 input_prg.classList.add('input_prg');
                 let input_date = document.createElement('input');
                 input_date.classList.add('input_date');
+                input_date.setAttribute('type','date');
                 let deadline = new Date( da.deadline );
-                input_date.setAttribute('value', deadline.getFullYear() + '-' + deadline.getMonth() + '-' + deadline.getDay() );
+                input_date.setAttribute('value', deadline.getFullYear() + '-' + ('0' + (deadline.getMonth()+1) ).slice(-2) + '-' + ('0' + deadline.getDate() ).slice(-2) );
                 let updown = document.createElement('div');
                 updown.classList.add('updown');
                 let up = document.createElement('button');

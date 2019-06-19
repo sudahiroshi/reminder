@@ -83,6 +83,10 @@ table tr:nth-child(even) {
 .input_progress {
     margin: 4px;
 }
+.input_subject {
+    background-color: #e0e0e0;
+    width: 100%;
+}
 .input_prg {
     display: flex;
     flex-wrap: nowrap;
