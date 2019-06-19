@@ -218,6 +218,17 @@ class Reminder {
                 parent.childNodes[1].textContent = num + 1;
             })
         }
+        let downs = document.querySelectorAll('.down');
+        for( let up of downs ) {
+            up.addEventListener('click', (ev) => {
+                console.log(ev.srcElement);
+                let parent = ev.srcElement.parentNode;
+                let num = Number(parent.childNodes[1].textContent);
+                console.log(num);
+                if( num != 0 )
+                    parent.childNodes[1].textContent = num - 1;
+            })
+        }
     }
 }
 
