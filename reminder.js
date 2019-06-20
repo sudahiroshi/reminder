@@ -143,6 +143,7 @@ class Reminder {
 
             let to_setup = document.createElement('button');
             to_setup.textContent = "入力画面";
+            to_setup.classList.add('button');
             to_setup.addEventListener('click', () => {
                 this.setup();
             })
@@ -159,11 +160,30 @@ class Reminder {
             let setup = document.createElement('div');
             setup.classList.add('setup');
             let title = document.createElement('div');
+            let input_title = document.createElement('input');
+            input_title.classList.add('input_title');
+            input_title.setAttribute('value', dat.title);
             title.classList.add('title');
-            title.textContent = dat.title;
             let input_progress = document.createElement('div');
             input_progress.classList.add('input_progress');
             let page_all = dat.pages;
+            let input_pages = document.createElement('input');
+            let updown2 = document.createElement('div');
+            updown2.classList.add('updown');
+            let up2 = document.createElement('button');
+            up2.textContent = '▲';
+            up2.classList.add('up');
+            up2.classList.add('button');
+            let p2 = document.createElement('span');
+            p2.textContent = page_all;
+            let down2 = document.createElement('button');
+            down2.textContent = '▼';
+            down2.classList.add('down');
+            down2.classList.add('button');
+            updown2.appendChild(up2);
+            updown2.appendChild(p2);
+            updown2.appendChild(down2);
+
             for( let da of dat.progress ) {
                 let input_subject = document.createElement('input');
                 input_subject.classList.add('input_subject');
@@ -180,11 +200,14 @@ class Reminder {
                 let up = document.createElement('button');
                 up.textContent = '▲';
                 up.classList.add('up');
+                up.classList.add('button');
                 let p = document.createElement('span');
+                p.classList.add('input_page');
                 p.textContent = da.pages;
                 let down = document.createElement('button');
                 down.textContent = '▼';
                 down.classList.add('down');
+                down.classList.add('button');
 
                 updown.appendChild(up);
                 updown.appendChild(p);
@@ -196,39 +219,68 @@ class Reminder {
 
             }
             console.log(title);
+            title.appendChild(input_title);
+            title.appendChild(updown2);
             setup.appendChild(title)
             setup.appendChild(input_progress);
 
             let to_main = document.createElement('button');
             to_main.textContent = "保存しないで終了";
+            to_main.classList.add('button');
             to_main.addEventListener('click', () => {
                 this.rendering();
-            })
+            });
+            let save = document.createElement('button');
+            save.textContent = "保存して終了";
+            save.classList.add('button');
+            save.addEventListener('click', () => {
+                this.save_data();
+            });
             setup.appendChild(to_main);
+            setup.appendChild( save );
             body.appendChild( setup );
         }
 
         let ups = document.querySelectorAll('.up');
         for( let up of ups ) {
             up.addEventListener('click', (ev) => {
-                console.log(ev.srcElement);
                 let parent = ev.srcElement.parentNode;
                 let num = Number(parent.childNodes[1].textContent);
-                console.log(num);
                 parent.childNodes[1].textContent = num + 1;
             })
         }
         let downs = document.querySelectorAll('.down');
         for( let up of downs ) {
             up.addEventListener('click', (ev) => {
-                console.log(ev.srcElement);
                 let parent = ev.srcElement.parentNode;
                 let num = Number(parent.childNodes[1].textContent);
-                console.log(num);
                 if( num != 0 )
                     parent.childNodes[1].textContent = num - 1;
             })
         }
+    }
+    save_data() {
+        let temp = {};
+        let setup = document.querySelectorAll('.setup');
+        let title = document.querySelector('.input_title').value;
+        let page_all = number( setup[0].querySelector('.title').querySelector('.updown').querySelector('span').textContent );
+        let progress = [];
+        let input_subjects = document.querySelectorAll('.input_subject');
+        let input_dates = document.querySelectorAll('.input_date');
+        let input_pages = document.querySelectorAll('.input_page');
+
+        for( let work=0; work<input_subjects.length; work++ ) {
+            progress.push({
+                work: input_subjects[work].value,
+                deadline: input_dates[work].value,
+                pages: input_pages[work].textContent
+            });
+        }
+        temp.title = title;
+        temp.pages = page_all;
+        temp.progress = progress;
+        this.data = [temp];
+        this.rendering();
     }
 }
 
