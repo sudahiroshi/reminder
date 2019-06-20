@@ -1,4 +1,3 @@
-// service-worker.js
 const cache_name = 'reminder-v1';
 var cache_file = [
     '/reminder/',
