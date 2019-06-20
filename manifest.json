@@ -1,7 +1,7 @@
 {
     "short_name": "reminder",
     "name": "reminder",
-    "start_url": "http://172.16.121.107:8000/",
+    "start_url": "https://sudahiroshi.github.io/reminder/",
     "display": "standalone",
     "icons": [{
       "src": "./icon-256.png",
