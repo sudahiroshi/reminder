@@ -1,6 +1,6 @@
 // service-worker.js
 const cache_name = 'reminder-v1';
-var cache = [
+var cache_file = [
     '/',
     '/manifest.json',
     '/icon-192.png',
@@ -14,7 +14,7 @@ self.addEventListener('install', function(e) {
         caches
             .open(cache_name)
             .then(function(cache) {
-                return cache.addAll(cache);
+                return cache.addAll(cache_file);
             })
     );
     console.log('[ServiceWorker] Install');
