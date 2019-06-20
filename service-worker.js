@@ -1,13 +1,13 @@
 // service-worker.js
 const cache_name = 'reminder-v1';
 var cache_file = [
-    '/',
-    '/manifest.json',
-    '/icon-192.png',
-    '/icon-256.png',
-    '/reminder.css',
-    '/reminder.js',
-    '/service-worker.js'
+    '/reminder/',
+    '/reminder/manifest.json',
+    '/reminder/icon-192.png',
+    '/reminder/icon-256.png',
+    '/reminder/reminder.css',
+    '/reminder/reminder.js',
+    '/reminder/service-worker.js'
 ];
 self.addEventListener('install', function(e) {
     e.waitUntil(
