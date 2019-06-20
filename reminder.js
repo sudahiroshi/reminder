@@ -53,7 +53,22 @@ class Reminder {
     constructor() {
         // 本来ならDBとの接続などを行う．
         // 今はexampleをセットする
-        this.data = example;
+        //this.data = example;
+        const new_data = [];
+        new_data.push({
+            title: "タイトルを入力してください",
+            pages: 0,
+            progress: [
+                {
+                    work: "作業内容を入れてください",
+                    deadline: "2019/12/31",
+                    pages: 0
+                }
+            ]
+        });
+        var data = JSON.parse(localStorage.getItem('reminder')) || new_data;
+        this.data = data;
+
     }
     rendering() {
         let body = document.querySelector('body');
@@ -149,6 +164,10 @@ class Reminder {
             })
             task.appendChild( to_setup );
             body.appendChild( task );
+
+            let footer = document.createElement('footer');
+            footer.textContent = "Reminder ver. 0.1";
+            body.appendChild( footer );
         }
     }
 
@@ -215,7 +234,7 @@ class Reminder {
                 input_prg.appendChild(input_date);
                 input_prg.appendChild(updown);
                 input_progress.appendChild(input_subject);
-                input_progress.appendChild(input_prg)
+                input_progress.appendChild(input_prg);
 
             }
             console.log(title);
@@ -224,6 +243,54 @@ class Reminder {
             setup.appendChild(title)
             setup.appendChild(input_progress);
 
+            let plus = document.createElement('button');
+            plus.textContent = "+";
+            plus.classList.add('button');
+            plus.addEventListener('click', () => {
+                let input_subject = document.createElement('input');
+                input_subject.classList.add('input_subject');
+                input_subject.setAttribute('value', "");
+                let input_prg = document.createElement('div');
+                input_prg.classList.add('input_prg');
+                let input_date = document.createElement('input');
+                input_date.classList.add('input_date');
+                input_date.setAttribute('type','date');
+                let deadline = new Date();
+                input_date.setAttribute('value', deadline.getFullYear() + '-' + ('0' + (deadline.getMonth()+1) ).slice(-2) + '-' + ('0' + deadline.getDate() ).slice(-2) );
+                let updown = document.createElement('div');
+                updown.classList.add('updown');
+                let up = document.createElement('button');
+                up.textContent = '▲';
+                up.classList.add('up');
+                up.classList.add('button');
+                let p = document.createElement('span');
+                p.classList.add('input_page');
+                p.textContent = 0;
+                let down = document.createElement('button');
+                down.textContent = '▼';
+                down.classList.add('down');
+                down.classList.add('button');
+
+                up.addEventListener('click', (ev) => {
+                    let parent = ev.srcElement.parentNode;
+                    let num = Number(parent.childNodes[1].textContent);
+                    parent.childNodes[1].textContent = num + 1;
+                });
+                down.addEventListener('click', (ev) => {
+                    let parent = ev.srcElement.parentNode;
+                    let num = Number(parent.childNodes[1].textContent);
+                    if( num != 0 )
+                        parent.childNodes[1].textContent = num - 1;
+                });
+
+                updown.appendChild(up);
+                updown.appendChild(p);
+                updown.appendChild(down);
+                input_prg.appendChild(input_date);
+                input_prg.appendChild(updown);
+                input_progress.appendChild(input_subject);
+                input_progress.appendChild(input_prg);
+            });
             let to_main = document.createElement('button');
             to_main.textContent = "保存しないで終了";
             to_main.classList.add('button');
@@ -236,9 +303,14 @@ class Reminder {
             save.addEventListener('click', () => {
                 this.save_data();
             });
+            setup.appendChild(plus);
             setup.appendChild(to_main);
             setup.appendChild( save );
             body.appendChild( setup );
+
+            let footer = document.createElement('footer');
+            footer.textContent = "Reminder ver. 0.1";
+            body.appendChild( footer );
         }
 
         let ups = document.querySelectorAll('.up');
@@ -247,16 +319,16 @@ class Reminder {
                 let parent = ev.srcElement.parentNode;
                 let num = Number(parent.childNodes[1].textContent);
                 parent.childNodes[1].textContent = num + 1;
-            })
+            });
         }
         let downs = document.querySelectorAll('.down');
-        for( let up of downs ) {
-            up.addEventListener('click', (ev) => {
+        for( let down of downs ) {
+            down.addEventListener('click', (ev) => {
                 let parent = ev.srcElement.parentNode;
                 let num = Number(parent.childNodes[1].textContent);
                 if( num != 0 )
                     parent.childNodes[1].textContent = num - 1;
-            })
+            });
         }
     }
     save_data() {
@@ -280,6 +352,7 @@ class Reminder {
         temp.pages = page_all;
         temp.progress = progress;
         this.data = [temp];
+        localStorage.setItem('reminder', JSON.stringify(this.data));
         this.rendering();
     }
 }
