@@ -263,7 +263,7 @@ class Reminder {
         let temp = {};
         let setup = document.querySelectorAll('.setup');
         let title = document.querySelector('.input_title').value;
-        let page_all = number( setup[0].querySelector('.title').querySelector('.updown').querySelector('span').textContent );
+        let page_all = Number( setup[0].querySelector('.title').querySelector('.updown').querySelector('span').textContent );
         let progress = [];
         let input_subjects = document.querySelectorAll('.input_subject');
         let input_dates = document.querySelectorAll('.input_date');

@@ -3,6 +3,10 @@
     margin: 0px;
 }
 
+html {
+    touch-action: none;
+}
+
 .task {
     margin: 4px;
     border: 2px;
